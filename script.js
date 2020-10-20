@@ -129,6 +129,7 @@ function increaseScore() {
     if (score % (brickRowCount * brickColumnCount) === 0) {
         ball.visible = false;
         paddle.visible = false;
+        
         setTimeout(function () {
             showAllBricks();
             score = 0;
@@ -175,7 +176,7 @@ function keyUp(e) {
         e.key === 'Right' ||
         e.key === 'ArrowRight' ||
         e.key === 'Left' ||
-        e.key === 'ArrowLeft' ||
+        e.key === 'ArrowLeft' 
     ) {
         paddle.dx = 0;
     }
