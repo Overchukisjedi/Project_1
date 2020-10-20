@@ -64,3 +64,25 @@ function drawPaddle() {
     ctx.fill();
     ctx.closePath();
 }
+
+function drawBricks() {
+    bricks.forEach(column => {
+        column.forEach(brick => {
+            ctx.beginPath();
+            ctx.rect(bricks.x, bricks.y, bricks.w, bricks.h);
+            ctx.fillStyle = bricks.visible ? '#0095dd' : 'transparent';
+            ctx.fill();
+            ctx.closePath();
+        });
+    });
+}
+
+function movePaddle() {
+    paddle.x += paddle.dx;
+    if (paddle.x + paddle.w > canvas.width) {
+        paddle.x = canvas.width - paddle.w;
+    }
+    if (paddle.x < 0) {
+        paddle.x = 0;
+    }
+}
