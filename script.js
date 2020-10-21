@@ -1,4 +1,4 @@
-const rulerBtn = document.getElementById('rules-btn');
+const rulesBtn = document.getElementById('rules-btn');
 const closeBtn = document.getElementById('close-btn');
 const rules = document.getElementById('rules');
 const canvas = document.getElementById('canvas');
@@ -40,7 +40,7 @@ const brickInfo = {
 };
 
 const bricks = [];
-for (let i = 0; i < brickColumnCount; i++) {
+for (let i = 0; i < brickRowCount; i++) {
     bricks[i] = [];
     for (let j = 0; j < brickColumnCount; j++) {
         const x = i * (brickInfo.w + brickInfo.padding) + brickInfo.offsetX;
@@ -63,6 +63,11 @@ function drawPaddle() {
     ctx.fillStyle = paddle.visible ? '#0095dd' : 'transparent';
     ctx.fill();
     ctx.closePath();
+}
+
+function drawScore() {
+    ctx.font = '20px Arial';
+    ctx.fillText(`Score: ${score}`, canvas.width - 100, 30);
 }
 
 function drawBricks() {
@@ -99,18 +104,18 @@ function moveBall() {
     if (
         ball.x - ball.size > paddle.x && 
         ball.x + ball.size < paddle.x + paddle.w &&
-        ball.y + ball.size > paddle,y
+        ball.y + ball.size > paddle.y
     ) {
-        bal7.dy = -ball.speed;
+        ball.dy = -ball.speed;
     }
     bricks.forEach(column => {
         column.forEach(brick => {
             if (brick.visible) {
                 if (
                     ball.x - ball.size > brick.x &&
-                    ball.x + ball.size < brick.y &&
+                    ball.x + ball.size < brick.x + brick.w &&
                     ball.y + ball.size > brick.y &&
-                    ball.y - ball.size < brick.h
+                    ball.y - ball.size < brick.y + brick.h
                 ) {
                     ball.dy *= -1;
                     brick.visible = false;
@@ -119,7 +124,7 @@ function moveBall() {
             }
         });
     });
-    if (ball.y + ball.size > canvas, height) {
+    if (ball.y + ball.size > canvas.height) {
         showAllBricks();
         score = 0;
     }
@@ -185,5 +190,5 @@ function keyUp(e) {
 document.addEventListener('keydown', keyDown);
 document.addEventListener('keyup', keyUp);
 
-rulerBtn.addEventListener('click', () => rules.classList.add('show'));
+rulesBtn.addEventListener('click', () => rules.classList.add('show'));
 closeBtn.addEventListener('click', () => rules.classList.remove('show'));
