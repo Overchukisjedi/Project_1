@@ -6,8 +6,8 @@ const ctx = canvas.getContext('2d');
 
 let score = 0;
 
-const brickRowCount = 9;
-const brickColumnCount = 5;
+const brickRowCount = 12;
+const brickColumnCount = 7;
 const delay = 500;
 
 const ball = {
@@ -20,6 +20,16 @@ const ball = {
     visible: true
 };
 
+// const ballTwo = {
+//     x: canvas.width / 2,
+//     y: canvas.height / 2,
+//     size: 10,
+//     speed: 4,
+//     dx: 4,
+//     dy: -4,
+//     visible: true
+// };
+
 const paddle = {
     x: canvas.width / 2 - 40,
     y: canvas.height - 20,
@@ -31,7 +41,7 @@ const paddle = {
 };
 
 const brickInfo = {
-    w: 70,
+    w: 50,
     h: 20,
     padding: 10,
     offsetX: 45,
@@ -56,6 +66,14 @@ function drawBall() {
     ctx.fill();
     ctx.closePath();
 }
+
+// function drawBall() {
+//     ctx.beginPath();
+//     ctx.arc(ballTwo.x, ballTwo.y, ballTwo.size, 0, Math.PI * 2);
+//     ctx.fillStyle = ballTwo.visible ? 'green' : 'transparent';
+//     ctx.fill();
+//     ctx.closePath();
+// }
 
 function drawPaddle() {
     ctx.beginPath();
@@ -124,6 +142,7 @@ function moveBall() {
             }
         });
     });
+
     if (ball.y + ball.size > canvas.height) {
         showAllBricks();
         score = 0;
@@ -153,7 +172,7 @@ function showAllBricks() {
     });
 }
 function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 00, canvas.width, canvas.height);
     drawBall();
     drawPaddle();
     drawScore();
