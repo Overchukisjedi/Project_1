@@ -20,15 +20,15 @@ const ball = {
     visible: true
 };
 
-// const ballTwo = {
-//     x: canvas.width / 2,
-//     y: canvas.height / 2,
-//     size: 10,
-//     speed: 4,
-//     dx: 4,
-//     dy: -4,
-//     visible: true
-// };
+const ballTwo = {
+    x: canvas.width / 2,
+    y: canvas.height / 2,
+    size: 10,
+    speed: 4,
+    dx: 4,
+    dy: -4,
+    visible: true
+};
 
 const paddle = {
     x: canvas.width / 2 - 40,
